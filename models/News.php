@@ -12,11 +12,10 @@ class News extends Model
     public $id;
     public $title;
     public $text;
-    public $position;
 
     public function getNews()
     {
-        $sql = 'SELECT * FROM news ORDER BY position DESC';
+        $sql = 'SELECT * FROM news';
 
         return self::findBySql($sql);
     }
@@ -33,14 +32,23 @@ class News extends Model
 
     public function save()
     {
-        $sql = "INSERT INTO news ('title','text','position') VALUES (?,?,?)";
+        $sql = "INSERT INTO news (title,text) VALUES (:title,:text)";
+        $param = [
+            ':title' => $this->title,
+            ':text' => $this->text,
+        ];
 
-        return self::createSqlCommand($sql, [
-                $this->title,
-                $this->text,
-                $this->position,
-            ]
-        );
+        if ($this->id) {
+            $sql = "UPDATE `news` SET `title`=:title,`text`=:text WHERE id=:id";
+            $param = [
+                ':id' => $this->id,
+                ':title' => $this->title,
+                ':text' => $this->text,
+            ];
+        }
+
+
+        return self::createSqlCommand($sql, $param);
 
     }
 

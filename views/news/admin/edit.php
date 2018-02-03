@@ -1,31 +1,8 @@
-<?php
-
-use Controller\NewsController;
-
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-if( !empty( $_GET['id'] ) ) {
-  $id = $_GET['id'];
-} else {
-  echo 'wronggg';
-  exit;
-}
-
-$news = new NewsController;
-$post = $news->view( $id );
-?>
-
 <form method="post">
-  <input type="text" name="title" value="<?= $post['title'] ?>"><br>
-  <textarea name="text"><?= $post['text'] ?></textarea>
-  <input type="submit">
+    <input type="text" name="title" value="<?= $news['title'] ?>"/><br>
+    <textarea name="text"><?= $news['text'] ?></textarea>
+    <input type="hidden" name="id" value="<?= $news['id'] ?>"/><br>
+    <input type="submit">
 </form>
 
-<?php
-
-if( !empty( $_POST['title'] ) && !empty( $_POST['text'] ) ) {
-  $news->edit( $id );
-  header( "Refresh:0" );
-}
-?>
-<a href="/news/web/views/admin/">Back</a>
+<a href="/php-mvc-news/web/views/admin/">Back</a>

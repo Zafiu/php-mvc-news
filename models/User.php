@@ -17,6 +17,20 @@ class User extends Model
     public $username;
     public $password;
 
+    /**
+     * @param int $id
+     * @return mixed <array> User wurde gefunden
+     * <false> User konnte nicht gefunden werden
+     */
+    public function getUserById(int $id)
+    {
+        $this->id = $id;
+        $sql = 'SELECT * FROM user WHERE id = :id';
+
+        return self::findOneBySql($sql, [':id' => $this->id]);
+
+    }
+
     public function verifyUser($username, $password)
     {
         $this->username = $username;

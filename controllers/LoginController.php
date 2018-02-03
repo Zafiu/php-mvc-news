@@ -31,6 +31,18 @@ class LoginController extends Controller
     }
 
 
+    public function logout()
+    {
+        if (!empty($_SESSION)) {
+            if (session_destroy()) {
+                return $this->redirect('News');
+
+            }
+        }
+
+        return $this->pageNotfound();
+    }
+
     /**
      * User Eingaben werden überprüft und
      * es wird eine Session initialisiert

@@ -43,7 +43,7 @@ abstract class Controller
      */
     protected function redirect(string $location)
     {
-        return header('Location: /news/web/?r=' . $location);
+        return header('Location: /php-mvc-news/web/?r=' . $location);
     }
 
 }
