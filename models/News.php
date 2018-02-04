@@ -34,7 +34,7 @@ class News extends Model
 
     public function save()
     {
-        $sql = "INSERT INTO news (title,text,fk_userId) VALUES (:title,:text,::fk_userId)";
+        $sql = "INSERT INTO news (title,text,fk_userId) VALUES (:title,:text,:fk_userId)";
         $param = [
             ':title' => $this->title,
             ':text' => $this->text,
