@@ -3,6 +3,3 @@
     <textarea name="text" required></textarea>
     <input type="submit">
 </form>
-
-
-<a href="/php-mvc-news/web/views/admin/">Back</a>
