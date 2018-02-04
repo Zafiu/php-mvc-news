@@ -9,7 +9,7 @@ use Model\User;
 class NewsController extends Controller
 {
 
-    public function index()
+    public function actionIndex()
     {
         $model = new News();
         $result = $model->getNews();
@@ -29,7 +29,7 @@ class NewsController extends Controller
     }
 
 
-    public function view()
+    public function actionView()
     {
         if (!empty($_GET['id'])) {
             $model = new News();
@@ -40,10 +40,10 @@ class NewsController extends Controller
             }
         }
 
-        return $this->pageNotfound();
+        return $this->actionPageNotFound();
     }
 
-    public function edit()
+    public function actionEdit()
     {
         if (!empty($_SESSION)) {
             if (!empty($_POST)) {
@@ -53,7 +53,7 @@ class NewsController extends Controller
                 $model->text = $_POST['text'];
 
                 if ($model->save()) {
-                    $this->redirect('News');
+                    $this->redirect('news');
                 }
 
             } else {
@@ -63,11 +63,11 @@ class NewsController extends Controller
             }
         }
 
-        return $this->pageNotfound();
+        return $this->actionPageNotFound();
     }
 
 
-    public function create()
+    public function actionCreate()
     {
         if (!empty($_SESSION)) {
             if (!empty($_POST)) {
@@ -76,7 +76,7 @@ class NewsController extends Controller
                 $model->text = $_POST['text'];
 
                 if ($model->save()) {
-                    $this->redirect('News');
+                    $this->redirect('news');
                 }
 
             }
@@ -84,11 +84,11 @@ class NewsController extends Controller
             return $this->render(__DIR__ . '/../views/news/admin/create.php');
         }
 
-        return $this->pageNotfound();
+        return $this->actionPageNotFound();
     }
 
 
-    public function delete()
+    public function actionDelete()
     {
         if (!empty($_SESSION)) {
 
@@ -96,11 +96,11 @@ class NewsController extends Controller
                 $model = new News();
 
                 if ($model->delete($_GET['id'])) {
-                    $this->redirect('News');
+                    $this->redirect('news');
                 }
             }
         }
 
-        return $this->pageNotfound();
+        return $this->actionPageNotFound();
     }
 }

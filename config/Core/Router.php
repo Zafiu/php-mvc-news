@@ -6,31 +6,30 @@ namespace Config\Core;
 class Router
 {
     /**
-     * 404 Action
+     * @var string Default Controller
      */
-    const PAGE_NOT_FOUND = 'pageNotFound';
-
+    private $_controller;
     /**
-     * @var string Controller Klasse
+     * @var string Default Action bzw. Methode des Controllers
      */
-    private $_controller = '\Controller\NewsController';
-    /**
-     * @var string Action bzw. Methode des Controllers
-     */
-    private $_action = 'index';
+    private $_action;
 
     /**
      * URL wird eingelesen und überprüft, wenn sie
      * nicht gültig ist wird Page 404 ausgegeben
+     * @param $config array
      */
-    public function __construct()
+    public function __construct(array $config)
     {
+        $this->_controller = $config['defaultController'];
+        $this->_action = $config['defaultAction'];
+        define('PAGE_NOT_FOUND', $config['pageNotFound']);
 
         if (!empty($_GET['r'])) {
             $route = explode('/', $_GET['r']);
 
             if (!$this->verifyClassAndAction($route)) {
-                $this->_action = self::PAGE_NOT_FOUND;
+                $this->_action = 'actionPageNotFound';
             }
         }
     }
@@ -53,8 +52,8 @@ class Router
      */
     protected function verifyClassAndAction(array $route): bool
     {
-        $controller = '\Controller\\' . $route[0] . 'Controller';
-        $action = !empty($route[1]) ? $route[1] : false;
+        $controller = '\Controller\\' . ucfirst($route[0]) . 'Controller';
+        $action = !empty($route[1]) ? 'action' . ucfirst($route[1]) : false;
 
         if (!class_exists($controller)) {
             return false;

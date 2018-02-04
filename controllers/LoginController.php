@@ -12,7 +12,7 @@ class LoginController extends Controller
      * User bereis eingeloggt -> Weiterleitung sonst
      * Ausgabe der Form zum Einloggen
      */
-    public function index()
+    public function actionIndex()
     {
         if (empty($_SESSION)) {
             if (empty($_POST['username']) && empty($_POST['password'])) {
@@ -27,20 +27,20 @@ class LoginController extends Controller
             }
         }
 
-        return $this->redirect('News');
+        return $this->redirect('news');
     }
 
 
-    public function logout()
+    public function actionLogout()
     {
         if (!empty($_SESSION)) {
             if (session_destroy()) {
-                return $this->redirect('News');
+                return $this->redirect('news');
 
             }
         }
 
-        return $this->pageNotfound();
+        return $this->actionPageNotFound();
     }
 
     /**

@@ -4,5 +4,3 @@
     <input type="hidden" name="id" value="<?= $news['id'] ?>"/><br>
     <input type="submit">
 </form>
-
-<a href="/php-mvc-news/web/views/admin/">Back</a>

@@ -1,4 +1,4 @@
-<form action="/php-mvc-news/web/?r=Login" method="post">
+<form action="/php-mvc-news/web/?r=login" method="post">
 
     <div class="container">
         <label><b>Username</b></label>

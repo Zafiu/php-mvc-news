@@ -12,9 +12,9 @@ namespace Config\Core;
 abstract class Controller
 {
 
-    public function pageNotfound()
+    public function actionPageNotFound()
     {
-        return $this->render(__DIR__ . '/../../views/page-not-found.php');
+        return $this->render(PAGE_NOT_FOUND);
     }
 
     /**
