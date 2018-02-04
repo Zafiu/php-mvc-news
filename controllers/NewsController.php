@@ -9,6 +9,7 @@ use Model\User;
 class NewsController extends Controller
 {
 
+
     public function actionIndex()
     {
         $model = new News();
@@ -29,21 +30,20 @@ class NewsController extends Controller
     }
 
 
-    public function actionView()
+    public function actionView($id)
     {
-        if (!empty($_GET['id'])) {
-            $model = new News();
-            $news = $model->getOneNews($_GET['id']);
+        $model = new News();
+        $news = $model->getOneNews($id);
 
-            if ($news) {
-                return $this->render(__DIR__ . '/../views/news/view.php', ['news' => $news]);
-            }
+        if ($news) {
+            return $this->render(__DIR__ . '/../views/news/view.php', ['news' => $news]);
         }
 
         return $this->actionPageNotFound();
     }
 
-    public function actionEdit()
+
+    public function actionEdit($id = null)
     {
         if (!empty($_SESSION)) {
             if (!empty($_POST)) {
@@ -56,9 +56,9 @@ class NewsController extends Controller
                     $this->redirect('news');
                 }
 
-            } else {
+            } elseif ($id) {
                 $model = new News();
-                $news = $model->getOneNews($_GET['id']);
+                $news = $model->getOneNews($id);
                 return $this->render(__DIR__ . '/../views/news/admin/edit.php', ['news' => $news]);
             }
         }
@@ -88,16 +88,13 @@ class NewsController extends Controller
     }
 
 
-    public function actionDelete()
+    public function actionDelete($id)
     {
         if (!empty($_SESSION)) {
+            $model = new News();
 
-            if (!empty($_GET['id'])) {
-                $model = new News();
-
-                if ($model->delete($_GET['id'])) {
-                    $this->redirect('news');
-                }
+            if ($model->delete($id)) {
+                $this->redirect('news');
             }
         }
 

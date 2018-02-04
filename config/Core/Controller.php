@@ -33,7 +33,7 @@ abstract class Controller
             return;
         }
 
-        return false;
+        return $this->actionPageNotFound();
     }
 
     /**

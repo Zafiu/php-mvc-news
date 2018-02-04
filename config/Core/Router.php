@@ -40,7 +40,7 @@ class Router
     public function run()
     {
         $controller = new $this->_controller;
-        $controller->{$this->_action}();
+        call_user_func_array([$controller, $this->_action], $this->getRequiredParams());
     }
 
     /**
@@ -71,5 +71,27 @@ class Router
         $this->_action = $action;
 
         return true;
+    }
+
+    /**
+     * gibt alle _GET Werte außer 'r' zurück,
+     * welche als Parameter für functions eingesetzt
+     * werden können
+     *
+     * @return array params für die Action
+     */
+    protected function getRequiredParams()
+    {
+        $params = [];
+
+        foreach ($_GET as $key => $value) {
+            if ($key === 'r') {
+                continue;
+            }
+
+            $params[$key] = $value;
+        }
+
+        return $params;
     }
 }
