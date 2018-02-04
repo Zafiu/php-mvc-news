@@ -51,6 +51,8 @@ class NewsController extends Controller
                 $model->id = $_POST['id'];
                 $model->title = $_POST['title'];
                 $model->text = $_POST['text'];
+                $model->fk_userId = $_POST['userId'];
+
 
                 if ($model->save()) {
                     $this->redirect('news');
@@ -74,14 +76,14 @@ class NewsController extends Controller
                 $model = new News();
                 $model->title = $_POST['title'];
                 $model->text = $_POST['text'];
+                $model->fk_userId = $_POST['userId'];
 
                 if ($model->save()) {
                     $this->redirect('news');
                 }
-
             }
 
-            return $this->render(__DIR__ . '/../views/news/admin/create.php');
+            return $this->render(__DIR__ . '/../views/news/admin/create.php', ['userId' => $_SESSION['id']]);
         }
 
         return $this->actionPageNotFound();

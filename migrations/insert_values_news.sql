@@ -1,8 +1,9 @@
-INSERT INTO `news`(`title`, `text`) VALUES ('Title1','Text1');
-INSERT INTO `news`(`title`, `text`) VALUES ('Title2','Text2');
-INSERT INTO `news`(`title`, `text`) VALUES ('Title3','Text3');
-INSERT INTO `news`(`title`, `text`) VALUES ('Title4','Text4');
-INSERT INTO `news`(`title`, `text`) VALUES ('Title5','Text5');
-INSERT INTO `news`(`title`, `text`) VALUES ('Title6','Text6');
-INSERT INTO `news`(`title`, `text`) VALUES ('Title7','Text7');
-INSERT INTO `news`(`title`, `text`) VALUES ('Title8','Text8');
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title1','Text1', 1);
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title2','Text2', 2);
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title3','Text3', 3);
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title4','Text4', 4);
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title5','Text5', 1);
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title6','Text6', 3);
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title7','Text7', 4);
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title8','Text8', 2);
+INSERT INTO `news`(`title`, `text`, `fk_userId`) VALUES ('Title9','Text9', 1);

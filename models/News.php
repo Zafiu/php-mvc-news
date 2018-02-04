@@ -12,6 +12,8 @@ class News extends Model
     public $id;
     public $title;
     public $text;
+    public $fk_userId;
+
 
     public function getNews()
     {
@@ -32,18 +34,20 @@ class News extends Model
 
     public function save()
     {
-        $sql = "INSERT INTO news (title,text) VALUES (:title,:text)";
+        $sql = "INSERT INTO news (title,text,fk_userId) VALUES (:title,:text,::fk_userId)";
         $param = [
             ':title' => $this->title,
             ':text' => $this->text,
+            ':fk_userId' => $this->fk_userId
         ];
 
         if ($this->id) {
-            $sql = "UPDATE `news` SET `title`=:title,`text`=:text WHERE id=:id";
+            $sql = "UPDATE `news` SET `title`=:title,`text`=:text WHERE id=:id AND fk_userId=:fk_userId";
             $param = [
                 ':id' => $this->id,
                 ':title' => $this->title,
                 ':text' => $this->text,
+                ':fk_userId' => $this->fk_userId
             ];
         }
 
